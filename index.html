@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-Projeto Construção de um Portal de Notícias</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+
+<body>
+    <script src="script.js"></script>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h4>Adicionar Notícia</h4>
+            <input type="text" id="url" placeholder="Adicione a URL da img" style="margin-bottom: 20px;">
+            <input type="text" placeholder="Titulo" style="margin-bottom: 20px;" id="titulo">
+            <input type="text" placeholder="Descricao" id="descricao">
+            <button class="btn" onclick="addNotice()">Adicionar</button>
+            <button class="btn" onclick="closeModal()">Fechar modal</button>
+        </div>
+    </div>
+    <header style="display: none;">
+        <h1>Portal de Notícias</h1>
+        <button class="btn" onclick="openModal()" id="add"><img
+                src="img/add_insert_button_plus_icon_177605-removebg-preview.png" alt="" id="add"></button>
+    </header>
+
+    <div class="card text-center" id="erro" style="margin-top: 14%;">
+        <div class="card-header">
+            Erro!
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Parece que não há nada aqui</h5>
+            <p class="card-text">Aperte nesse botão ⇓ e vamos ver o que acontece? </p>
+            <button type="button" class="btn btn-dark" onclick="mostrarSite()" id="btnSite">?????</button>
+        </div>
+        <div class="card-footer text-body-secondary">
+            <a id="data"></a>
+            <script>
+                let data = document.getElementById("data");
+                const timeElapsed = Date.now();
+                const today = new Date(timeElapsed);
+                data.innerHTML = today.toDateString();
+            </script>
+        </div>
+    </div>
+
+
+    <main style="display: none;">
+        <div class="card mb-3" id="manchete">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="img/2023-05-22t111739z_1_lynxmpej4l0dh_rtroptp_4_futebol-vini-jr-queixa.jpg"
+                        class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Vinícius Junior sofre racismo novamente.</h5>
+                        <p class="card-text">No jogo entre Real Madrid e Valencia, Vinícius Junior foi alvo de
+                            racismo por parte de torcedores do Valencia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="max-width: 1441px;" id="noticiasDiv">
+            <div class="card" id="notPrincipais">
+                <div class="card-body text-center">
+                    <p class="noticiasTipo">Notícias principais </p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="img/netflix.webp" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Netflix começa a cobrar pelo compartilhamento de senhas no Brasil</p>
+                    <p class="textoNotPrincipal">Pagamento pelo uso de mesma assinatura em mais de uma casa já estava
+                        sendo aplicado em outros países e chega ao Brasil por R$ 12,90 mensais.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="img/WhatsApp-Image-2023-05-23-at-07-50-22-jpeg.avif" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Acidente de ônibus em BH.</p>
+                    <p class="textoNotPrincipal">Um acidente envolvendo dois ônibus do Move metropolitano deixou ao
+                        menos 17 pessoas feridas na manhã desta terça-feira (23) na avenida Dom Pedro I.</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="img/butantan.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Instituto Butantan começa a desenvolver vacina contra gripe aviária</p>
+                    <p class="textoNotPrincipal">Segundo o instituto, testes estão sendo realizados com cepas vacinais
+                        que foram cedidas pela OMS. Primeiro lote já está pronto para o início dos testes pré-clínicos.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div class="container" style="max-width: 1441px;">
+            <div class="card" id="notPrincipais">
+                <div class="card-body text-center">
+                    <p class="noticiasTipo">Notícias secundárias</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="/img/sorvete-mais-caro.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Japão tem sorvete mais caro do mundo</p>
+                    <p class="textoNotPrincipal">Japão tem sorvete mais caro do mundo feito com trufa e ouro, chamado de
+                        a noite branca de gelato, a bola do
+                        sorvete custa R$ 31 mil. </p>
+                </div>
+            </div>
+
+            <div class="card" style="width: 18rem;">
+                <img src="img/35809935.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">PM que deu ordem de recuo em 8 de janeiro foi preso</p>
+                    <p class="textoNotPrincipal">PF cumpre mandados em operação que investiga atos terroristas em
+                        Brasília na 12ª fase da operação Lesa Pátria</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <img src="img/protesto.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Secretaria de Educação anuncia corte do ponto de quem aderir à paralisação no
+                        DF </p>
+                    <p class="textoNotPrincipal">A Secretaria de Educação do Distrito Federal (SEEDF) informou, que vai
+                        cortar o ponto dos professores que aderirem à greve da categoria. </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer style="display: none;">
+        <div class="container">
+            <a href="https://www.instagram.com/samukalatico/" class="alg1"><img
+                    src="img/logotipo-de-midia-social-de-contorno-preto_197792-2416-removebg-preview.png" alt=""
+                    class="lg1"></a>
+            <a href="https://www.facebook.com/profile.php?id=100017922517702" class="alg2"><img
+                    src="img/png-clipart-facebook-like-button-computer-icons-social-icons-logo-internet-removebg-preview.png"
+                    alt="" class="lg2"></a>
+            <a href="https://twitter.com/Samuel2834e/"><img src="img/twitter-vulto-negro_318-55784-removebg-preview.png"
+                    alt="" class="lg3"></a>
+        </div>
+        <a>&copy; 2023 Samuel. Todos os direitos reservados.</a>
+    </footer>
+
+</body>
+
+</html>
